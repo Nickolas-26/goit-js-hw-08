@@ -18,21 +18,30 @@ refs.form.addEventListener('input', e => {
   // считываем инпуты с 2х полей ,формируем обьект  записываем в localeStorage
   localStorage.setItem(STORAGE_KEY, formDataStr);
   // при загрузке страницы проверить лежат ли данные в storageKey , парсим их и заполняем эти поля формы (инпуты)
-  function saveText() {
-    const savedMessage = localStorage.getItem(STORAGE_KEY);
-    // нам надо написать если наша savedMessage приводится к true то мы можем работать и значит там есть какие-то данные(которые введены были до этого)
-    if (savedMessage === true) {
-      //   обновляем DOM , берем texArea и записываем ей value
-      refs.textArea.value = savedMessage;
-      savedMessage = localStorage.setItem(STORAGE_KEY, textMassage);
-    }
-  }
-
-  // где вызывать наш saveText
 });
-//  saveText();
+function addText() {
+  const savedMessage = localStorage.getItem(STORAGE_KEY);
+  // нам надо написать если наша savedMessage приводится к true то мы можем работать и значит там есть какие-то данные(которые введены были до этого)
+  if (savedMessage) {
+    //   обновляем DOM , берем texArea и записываем ей value
+    const saveMassage = JSON.parse(savedMessage);
+    // console.log(saveMassage);
+    for (const item in saveMassage) {
+      if (saveMassage.hasOwnProperty(item)) {
+        // formData[e.target.name] = e.target.value;
+        refs.form.elements[item].value = saveMassage[item];
+      }
+    }
+    // refs.textArea.value = savedMessage;
+    // savedMessage = localStorage.setItem(STORAGE_KEY, textMassage);
+  }
+}
+// console.log(refs.form.elements['email']);
+//  парсим объект с данными , 2 запускаем цикл for in , добавить проверку has on property . обратится к полю refs.form.elements[] и задаем value
+addText();
 // пишем callBack(и) для наший функций
 function formSubmit(e) {
+  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   // запрещаем действия по-умолчанию (то бишь странница при отправке формы не перезагружается)
   e.preventDefault();
   e.currentTarget.reset();
