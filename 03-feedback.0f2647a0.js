@@ -4,6 +4,6 @@ var t=arguments[3],n="Expected a function",e=NaN,i="[object Symbol]",r=/^\s+|\s+
 },{}],"en75":[function(require,module,exports) {
 
 },{}],"TTyb":[function(require,module,exports) {
-"use strict";var e=t(require("lodash.throttle"));function t(e){return e&&e.__esModule?e:{default:e}}require("../css/common.css"),require("../css/03-feedback.css");const r="feedback-form-state",o={},a={form:document.querySelector(".feedback-form"),textArea:document.querySelector(".feedback-form textarea")};function c(e){e.preventDefault(),e.currentTarget.reset(),localStorage.removeItem(r)}a.form.addEventListener("submit",c),a.form.addEventListener("input",e=>{o[e.target.name]=e.target.value;const t=JSON.stringify(o);localStorage.setItem(r,t)});
+"use strict";var e=t(require("lodash.throttle"));function t(e){return e&&e.__esModule?e:{default:e}}require("../css/common.css"),require("../css/03-feedback.css");const r="feedback-form-state",o={},a={form:document.querySelector(".feedback-form"),textArea:document.querySelector(".feedback-form textarea")};function s(){const e=localStorage.getItem(r);if(e){const t=JSON.parse(e);for(const e in t)t.hasOwnProperty(e)&&(a.form.elements[e].value=t[e])}}function c(e){console.log(JSON.parse(localStorage.getItem(r))),e.preventDefault(),e.currentTarget.reset(),localStorage.removeItem(r)}a.form.addEventListener("submit",c),a.form.addEventListener("input",e=>{o[e.target.name]=e.target.value;const t=JSON.stringify(o);localStorage.setItem(r,t)}),s();
 },{"lodash.throttle":"FNyO","../css/common.css":"en75","../css/03-feedback.css":"en75"}]},{},["TTyb"], null)
-//# sourceMappingURL=/goit-js-hw-08/03-feedback.e76a57f9.js.map
+//# sourceMappingURL=/goit-js-hw-08/03-feedback.0f2647a0.js.map
